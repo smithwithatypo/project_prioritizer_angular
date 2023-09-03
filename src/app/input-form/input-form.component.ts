@@ -10,6 +10,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 export class InputFormComponent {
   projectForm!: FormGroup;
   projects_list: any = [];
+  results: any[] = [];
 
   constructor(private fb: FormBuilder) { }
 
@@ -35,5 +36,37 @@ export class InputFormComponent {
 
   onClearProjects() {
     this.projects_list = [];
+  }
+
+  calculateResults() {
+    let r: any[] = [];
+    let total: number = 0;
+
+    for (let i = 0; i < this.projects_list.length; i++) {
+      total = (this.projects_list[i].importance * .6) + (this.projects_list[i].urgency * 1.4);
+      // if i < 10 and u < 10: "delete"
+      if (this.projects_list[i].importance < 10 && this.projects_list[i].urgency < 10) {
+        r.push([total, this.projects_list[i].project_name, "delete it"]);
+      }
+      // if i <= 10 and u >= 10: "delegate"
+      else if (this.projects_list[i].importance <= 10 && this.projects_list[i].urgency >= 10) {
+        r.push([total, this.projects_list[i].project_name, "delegate it"]);
+      }
+      // if i >= 10 and u <= 10: "schedule"
+      else if (this.projects_list[i].importance >= 10 && this.projects_list[i].urgency <= 10) {
+        r.push([total, this.projects_list[i].project_name, "schedule it"]);
+      }
+      // if i >= 10 and u >= 10: "do"
+      else if (this.projects_list[i].importance >= 10 && this.projects_list[i].urgency >= 10) {
+        r.push([total, this.projects_list[i].project_name, "do it"]);
+      }
+    }
+
+    return r.sort((a, b) => b[0] - a[0]);
+
+  }
+  
+  onCalculateResults() {
+    this.results = this.calculateResults();
   }
 }
