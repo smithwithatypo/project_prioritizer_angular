@@ -43,7 +43,7 @@ export class InputFormComponent {
     let total: number = 0;
 
     for (let i = 0; i < this.projects_list.length; i++) {
-      total = (this.projects_list[i].importance * .6) + (this.projects_list[i].urgency * 1.4);
+      total = Math.round((this.projects_list[i].importance * .6) + (this.projects_list[i].urgency * 1.4) * 10) / 10;
       // if i < 10 and u < 10: "delete"
       if (this.projects_list[i].importance < 10 && this.projects_list[i].urgency < 10) {
         r.push([total, this.projects_list[i].project_name, "delete it"]);
