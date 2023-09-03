@@ -11,9 +11,7 @@ export class InputFormComponent {
   projectForm!: FormGroup;
   projects_list: any = [];
 
-  constructor(private fb: FormBuilder) { 
-    
-  }
+  constructor(private fb: FormBuilder) { }
 
   ngOnInit(): void {
     this.projectForm = this.fb.group({
@@ -31,7 +29,11 @@ export class InputFormComponent {
     }
   }
 
-  onClear() {
+  onClearForm() {
+    this.projectForm.reset();
+  }
+
+  onClearProjects() {
     this.projects_list = [];
   }
 }
