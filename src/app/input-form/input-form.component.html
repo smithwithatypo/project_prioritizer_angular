@@ -11,18 +11,18 @@
         <div>
           <!-- <input type="number" id="importance" formControlName="importance" min="0" max="20"> -->
           <mat-slider discrete min="0" max="20" step="1"><input matSliderThumb [(ngModel)]="importanceValue" name="importance_name"></mat-slider>
-          <label for="importance">Importance (0-20)</label>
+          <label for="importance">Importance</label>
         </div>
       
         <div>
           <!-- <input type="number" id="urgency" formControlName="urgency" min="0" max="20"> -->
           <mat-slider discrete min="0" max="20" step="1"><input matSliderThumb [(ngModel)]="urgencyValue" name="urgency_name"></mat-slider>
-          <label for="urgency">Urgency (0-20)</label>
+          <label for="urgency">Urgency</label>
         </div>
       
         <div class="buttons-row">
           <button mat-stroked-button type="submit">Submit</button>
-          <button mat-button type="button" (click)="onClearForm()">Clear</button>
+          <button mat-button type="button" (click)="onClearForm()">Clear form</button>
         </div>
 
     </form>
@@ -31,7 +31,7 @@
 
 
 
-<div class="container" *ngIf="projects_list.length > 0 && isPopulated">
+<div class="container" *ngIf="projects_list.length > 0">
   <h2>Projects</h2>
   <mat-list>
     <mat-list-item *ngFor="let project of projects_list">
@@ -42,9 +42,9 @@
 
 
 <div class="container" *ngIf="results.length > 0">
-  <h2>Results</h2>
+  <h2>Rankings</h2>
   <mat-list>
     <mat-list-item *ngFor="let result of results">
-      {{ result[1] }}: {{ result[2] }} (Score: {{ result[0] }})
+      {{ result[1] }}:  {{ result[2] }}
     </mat-list-item>
   </mat-list>

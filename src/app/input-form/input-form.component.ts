@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-// import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 
 @Component({
@@ -14,7 +13,6 @@ export class InputFormComponent {
   projectNameValue: string = '';
   importanceValue: any = 10;
   urgencyValue: any = 10;
-  isPopulated: boolean = false;
 
   onSubmit() {
     this.projects_list.push(
@@ -22,25 +20,8 @@ export class InputFormComponent {
       "importance": this.importanceValue, 
       "urgency": this.urgencyValue}
       );
-    this.isPopulated = true;
   }
 
-  // constructor(private fb: FormBuilder) {
-  //   this.projectForm = this.fb.group({
-  //     project_name: ['', Validators.required],
-  //     importance: [0, Validators.required],
-  //     urgency: [0, Validators.required]
-  //   });
-  //  }
-
-
-  // onSubmit() {
-  //   if (this.projectForm.valid) {
-  //     const formValues = this.projectForm.value;
-  //     this.projects_list.push(formValues);
-  //     console.log(this.projects_list);
-  //   }
-  // }
 
   onClearForm() {
     this.projectNameValue = '';

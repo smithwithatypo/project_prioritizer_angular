@@ -27,3 +27,7 @@
 .buttons-row button {
   margin-right: 15px;
 }
+
+.mat-slider {
+  width: 30px;
+}
