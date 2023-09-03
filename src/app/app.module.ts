@@ -11,11 +11,7 @@ import { FormsModule } from '@angular/forms';  // Import FormsModule
 
 import { AppComponent } from './app.component';
 import { InputFormComponent } from './input-form/input-form.component';
-import { GraphComponent } from './graph/graph.component';
-import { TestingThisDeleteComponent } from './testing-this-delete/testing-this-delete.component';
 import { MatInputModule } from '@angular/material/input';
-import { MatSelectModule } from '@angular/material/select';
-import { MatRadioModule } from '@angular/material/radio';
 import { MatCardModule } from '@angular/material/card';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatListModule} from '@angular/material/list';
@@ -25,9 +21,7 @@ import {MatListModule} from '@angular/material/list';
 @NgModule({
   declarations: [
     AppComponent,
-    InputFormComponent,
-    GraphComponent,
-    TestingThisDeleteComponent
+    InputFormComponent
   ],
   imports: [
     BrowserModule,
@@ -36,8 +30,6 @@ import {MatListModule} from '@angular/material/list';
     BrowserAnimationsModule,
     MatButtonModule,
     MatInputModule,
-    MatSelectModule,
-    MatRadioModule,
     MatCardModule,
     FormsModule,
     MatFormFieldModule,
