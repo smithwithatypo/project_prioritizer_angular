@@ -26,9 +26,12 @@ export class InputFormComponent {
   onSubmit() {
     if (this.projectForm.valid) {
       const formValues = this.projectForm.value;
-      // console.log(formValues);
       this.projects_list.push(formValues);
       console.log(this.projects_list);
     }
+  }
+
+  onClear() {
+    this.projects_list = [];
   }
 }
