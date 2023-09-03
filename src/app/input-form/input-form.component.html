@@ -24,3 +24,10 @@
   
   </form>
   
+  <div *ngIf="projects_list.length > 0">
+    <h2>Projects</h2>
+    <ul>
+      <li *ngFor="let project of projects_list">
+        {{ project.project_name }} - {{ project.importance }} - {{ project.urgency }}
+      </li>
+    </ul>
