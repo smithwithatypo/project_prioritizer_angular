@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+// import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 
 @Component({
@@ -8,36 +8,46 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./input-form.component.css']
 })
 export class InputFormComponent {
-  projectForm!: FormGroup;
   projects_list: any = [];
   results: any[] = [];
 
-  constructor(private fb: FormBuilder) { 
-    this.projectForm = this.fb.group({
-      project_name: ['', Validators.required],
-      importance: [0, [Validators.required, Validators.min(0), Validators.max(20)]],
-      urgency: [0, [Validators.required, Validators.min(0), Validators.max(20)]]
-    });
-  }
-
+  projectNameValue: string = '';
+  importanceValue: any = 10;
+  urgencyValue: any = 10;
+  isPopulated: boolean = false;
 
   onSubmit() {
-    if (this.projectForm.valid) {
-      const formValues = this.projectForm.value;
-      this.projects_list.push(formValues);
-      console.log(this.projects_list);
-    }
+    this.projects_list.push(
+      {"project_name": this.projectNameValue, 
+      "importance": this.importanceValue, 
+      "urgency": this.urgencyValue}
+      );
+    this.isPopulated = true;
   }
+
+  // constructor(private fb: FormBuilder) {
+  //   this.projectForm = this.fb.group({
+  //     project_name: ['', Validators.required],
+  //     importance: [0, Validators.required],
+  //     urgency: [0, Validators.required]
+  //   });
+  //  }
+
+
+  // onSubmit() {
+  //   if (this.projectForm.valid) {
+  //     const formValues = this.projectForm.value;
+  //     this.projects_list.push(formValues);
+  //     console.log(this.projects_list);
+  //   }
+  // }
 
   onClearForm() {
-    this.projectForm.reset();
+    this.projectNameValue = '';
+    this.importanceValue = 10;
+    this.urgencyValue = 10;
   }
 
-  onClearProjects() {
-    this.projectForm.reset();
-    this.projects_list = [];
-    this.results = [];
-  }
 
   calculateResults() {
     let r: any[] = [];

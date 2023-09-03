@@ -1,49 +1,50 @@
 <div class="form-container">
-  <form [formGroup]="projectForm" (ngSubmit)="onSubmit()">
+    <form (ngSubmit)="onSubmit()">
 
-      <div>
-        <label for="project_name">Project Name:</label>
-        <input type="text" id="project_name" formControlName="project_name">
-      </div>
-    
-      <div>
-        <!-- <input type="number" id="importance" formControlName="importance" min="0" max="20"> -->
-        <mat-slider formControlName="importanceValue" min="0" max="20" step="1"></mat-slider>
-        <label for="importance">Importance (0-20)</label>
-      </div>
-    
-      <div>
-        <!-- <input type="number" id="urgency" formControlName="urgency" min="0" max="20"> -->
-        <mat-slider formControlName="urgencyValue" min="0" max="20" step="1"></mat-slider>
-        <label for="urgency">Urgency (0-20)</label>
-      </div>
-    
-      <button type="submit" [disabled]="projectForm.invalid">Submit</button>
-      <button type="button" (click)="onClearForm()">Clear</button>
-      <button (click)="onClearProjects()">Start new projects list</button>
+        <div>
+          <mat-form-field>
+          <mat-label for="project_name">Project Name</mat-label>
+          <input matInput type="text" id="project_name" [(ngModel)]="projectNameValue" name="project_name_name">
+        </mat-form-field>
+        </div>
+      
+        <div>
+          <!-- <input type="number" id="importance" formControlName="importance" min="0" max="20"> -->
+          <mat-slider discrete min="0" max="20" step="1"><input matSliderThumb [(ngModel)]="importanceValue" name="importance_name"></mat-slider>
+          <label for="importance">Importance (0-20)</label>
+        </div>
+      
+        <div>
+          <!-- <input type="number" id="urgency" formControlName="urgency" min="0" max="20"> -->
+          <mat-slider discrete min="0" max="20" step="1"><input matSliderThumb [(ngModel)]="urgencyValue" name="urgency_name"></mat-slider>
+          <label for="urgency">Urgency (0-20)</label>
+        </div>
+      
+        <div class="buttons-row">
+          <button mat-stroked-button type="submit">Submit</button>
+          <button mat-button type="button" (click)="onClearForm()">Clear</button>
+        </div>
 
-  </form>
-
-  <button mat-raised-button (click)="onCalculateResults()">Calculate Results</button>
+    </form>
+    <button mat-raised-button color="primary" (click)="onCalculateResults()">Calculate Results</button>
 </div>
-  
-<button mat-raised-button>Click me!</button>
 
 
-<div *ngIf="projects_list.length > 0">
+
+<div class="container" *ngIf="projects_list.length > 0 && isPopulated">
   <h2>Projects</h2>
-  <ul>
-    <li *ngFor="let project of projects_list">
+  <mat-list>
+    <mat-list-item *ngFor="let project of projects_list">
       {{ project.project_name }}: {{ project.importance }} importance, {{ project.urgency }} urgency
-    </li>
-  </ul>
+    </mat-list-item>
+  </mat-list>
 </div>
 
 
-<div *ngIf="results.length > 0">
+<div class="container" *ngIf="results.length > 0">
   <h2>Results</h2>
-  <ul>
-    <li *ngFor="let result of results">
+  <mat-list>
+    <mat-list-item *ngFor="let result of results">
       {{ result[1] }}: {{ result[2] }} (Score: {{ result[0] }})
-    </li>
-  </ul>
+    </mat-list-item>
+  </mat-list>
