@@ -12,15 +12,14 @@ export class InputFormComponent {
   projects_list: any = [];
   results: any[] = [];
 
-  constructor(private fb: FormBuilder) { }
-
-  ngOnInit(): void {
+  constructor(private fb: FormBuilder) { 
     this.projectForm = this.fb.group({
       project_name: ['', Validators.required],
       importance: [0, [Validators.required, Validators.min(0), Validators.max(20)]],
       urgency: [0, [Validators.required, Validators.min(0), Validators.max(20)]]
     });
   }
+
 
   onSubmit() {
     if (this.projectForm.valid) {

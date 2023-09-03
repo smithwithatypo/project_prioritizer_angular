@@ -7,12 +7,14 @@
       </div>
     
       <div>
-        <input type="number" id="importance" formControlName="importance" min="0" max="20">
+        <!-- <input type="number" id="importance" formControlName="importance" min="0" max="20"> -->
+        <mat-slider formControlName="importanceValue" min="0" max="20" step="1"></mat-slider>
         <label for="importance">Importance (0-20)</label>
       </div>
     
       <div>
-        <input type="number" id="urgency" formControlName="urgency" min="0" max="20">
+        <!-- <input type="number" id="urgency" formControlName="urgency" min="0" max="20"> -->
+        <mat-slider formControlName="urgencyValue" min="0" max="20" step="1"></mat-slider>
         <label for="urgency">Urgency (0-20)</label>
       </div>
     
@@ -22,9 +24,11 @@
 
   </form>
 
-  <button id="btn-calculate" (click)="onCalculateResults()">Calculate Results</button>
+  <button mat-raised-button (click)="onCalculateResults()">Calculate Results</button>
 </div>
   
+<button mat-raised-button>Click me!</button>
+
 
 <div *ngIf="projects_list.length > 0">
   <h2>Projects</h2>
