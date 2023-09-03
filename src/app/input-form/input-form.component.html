@@ -1,46 +1,45 @@
-<form [formGroup]="projectForm" (ngSubmit)="onSubmit()">
+<div class="form-container">
+  <form [formGroup]="projectForm" (ngSubmit)="onSubmit()">
 
-    <div>
-      <label for="project_name">Project Name:</label>
-      <input type="text" id="project_name" formControlName="project_name">
-    </div>
-  
-    <div>
-      <label for="importance">Importance (0-20):</label>
-      <input type="number" id="importance" formControlName="importance" min="0" max="20">
-    </div>
-  
-    <div>
-      <label for="urgency">Urgency (0-20):</label>
-      <input type="number" id="urgency" formControlName="urgency" min="0" max="20">
-    </div>
-  
-    <button type="submit" [disabled]="projectForm.invalid">Submit</button>
-    <button type="button" (click)="onClearForm()">Clear</button>
-
-    <div>
+      <div>
+        <label for="project_name">Project Name:</label>
+        <input type="text" id="project_name" formControlName="project_name">
+      </div>
+    
+      <div>
+        <input type="number" id="importance" formControlName="importance" min="0" max="20">
+        <label for="importance">Importance (0-20)</label>
+      </div>
+    
+      <div>
+        <input type="number" id="urgency" formControlName="urgency" min="0" max="20">
+        <label for="urgency">Urgency (0-20)</label>
+      </div>
+    
+      <button type="submit" [disabled]="projectForm.invalid">Submit</button>
+      <button type="button" (click)="onClearForm()">Clear</button>
       <button (click)="onClearProjects()">Start new projects list</button>
-    </div>
-  
-</form>
+
+  </form>
+
+  <button id="btn-calculate" (click)="onCalculateResults()">Calculate Results</button>
+</div>
   
 
 <div *ngIf="projects_list.length > 0">
   <h2>Projects</h2>
   <ul>
     <li *ngFor="let project of projects_list">
-      {{ project.project_name }} - {{ project.importance }} - {{ project.urgency }}
+      {{ project.project_name }}: {{ project.importance }} importance, {{ project.urgency }} urgency
     </li>
   </ul>
 </div>
 
 
-<button (click)="onCalculateResults()">Calculate Results</button>
-
 <div *ngIf="results.length > 0">
   <h2>Results</h2>
   <ul>
     <li *ngFor="let result of results">
-      {{ result[1] }}: {{ result[2] }} (Score: {{ result[0] }} )
+      {{ result[1] }}: {{ result[2] }} (Score: {{ result[0] }})
     </li>
   </ul>
